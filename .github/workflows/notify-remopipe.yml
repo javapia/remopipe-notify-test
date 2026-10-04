@@ -1,11 +1,11 @@
-# Build the canary APK, publish it at a URL that never changes, and tell remonode a build is ready.
+# Build the canary APK, publish it at a URL that never changes, and tell Remopipe a build is ready.
 #
-# The URL is the point. A remonode workflow that runs unattended at 10:00 cannot be edited every morning to
+# The URL is the point. A Remopipe workflow that runs unattended at 10:00 cannot be edited every morning to
 # point at today's build, and it cannot authenticate: the worker fetches `appUrl` with a plain GET and no
 # headers. GitHub Actions ARTIFACTS need a token, so they are out. A GitHub RELEASE asset does not — and
 # `/releases/latest/download/<name>` resolves to whatever the newest non-prerelease release holds:
 #
-#   https://github.com/javapia/remonode-notify-test/releases/latest/download/app-release.apk
+#   https://github.com/javapia/remopipe-notify-test/releases/latest/download/app-release.apk
 #
 # Every push to main moves the `nightly` release onto the new commit and replaces that asset, so the URL
 # pasted into the workflow's Install App step keeps being today's build without anyone touching it.
@@ -94,11 +94,11 @@ jobs:
           prerelease: false
           make_latest: "true"
 
-      # Unchanged in intent: this is still the repo that exercises remonode's CI Build Succeeded trigger.
+      # Unchanged in intent: this is still the repo that exercises Remopipe's CI Build Succeeded trigger.
       # It now runs AFTER the release, so a workflow woken by this hook finds the new APK already published
       # rather than racing the upload. Skipped when the secrets are absent — a fork or a fresh clone should
       # build, not fail on a curl to an empty URL.
-      - name: Notify remonode
+      - name: Notify Remopipe
         if: ${{ success() && env.HOOK_URL != '' }}
         env:
           WORKFLOW: ${{ github.workflow }}

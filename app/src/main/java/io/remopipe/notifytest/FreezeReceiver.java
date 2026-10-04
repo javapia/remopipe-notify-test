@@ -1,4 +1,4 @@
-package io.remonode.notifytest;
+package io.remopipe.notifytest;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,12 +7,12 @@ import android.os.SystemClock;
 import android.util.Log;
 
 /**
- * A deliberate ANR, for remonode's "Crash & ANR watch" template.
+ * A deliberate ANR, for Remopipe's "Crash & ANR watch" template.
  *
  * It has to be an ANR Android declares with nobody touching the phone, because an unattended run has nothing
  * to send the app next. Blocking the main thread in a click handler only becomes an ANR once a SECOND input
  * event is waiting, and a blocked service's start timeout did not fire at all on API 35. A foreground broadcast
- * does: its receiver gets 10 s, then ActivityManager logs "ANR in io.remonode.notifytest" by itself.
+ * does: its receiver gets 10 s, then ActivityManager logs "ANR in io.remopipe.notifytest" by itself.
  */
 public class FreezeReceiver extends BroadcastReceiver {
 

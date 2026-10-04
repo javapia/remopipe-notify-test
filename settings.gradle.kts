@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "remonode-notify-test"
+rootProject.name = "remopipe-notify-test"
 include(":app")

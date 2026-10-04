@@ -1,4 +1,4 @@
-package io.remonode.notifytest;
+package io.remopipe.notifytest;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,7 +30,7 @@ import java.util.Locale;
 
 /**
  * One screen, built in code — no layout XML, no AppCompat, no Compose. Everything here exists to be
- * ASSERTED ON by a remonode workflow running this app unattended, so the rules are:
+ * ASSERTED ON by a Remopipe workflow running this app unattended, so the rules are:
  *
  *  - CANARY OK is a fixed string that appears only when onCreate finished. It is what "Wait for Element"
  *    matches on, and it is deliberately not the app's name or label: a launcher icon and a title bar are on
@@ -41,13 +41,13 @@ import java.util.Locale;
  *  - The launch time is local to the device, and is there to prove the screen is this run's and not a
  *    cached screenshot.
  *
- * Under that header sits a fake sign-in with a real second factor, for remonode's "Login still works"
+ * Under that header sits a fake sign-in with a real second factor, for Remopipe's "Login still works"
  * template: email + password, then a 6-digit authenticator code, then a signed-in screen to assert on. It is
  * on this screen rather than its own activity because Launch App opens the launcher activity, and a second
  * launcher entry would make which one opens a coin toss. The header stays, so every workflow that waits for
  * CANARY OK keeps passing.
  *
- * The flow is shaped by how remonode's Input Text types, not by how a person would:
+ * The flow is shaped by how Remopipe's Input Text types, not by how a person would:
  *
  *  - A field picked by selector is filled with setValue, which does NOT reliably move focus to it. So Enter is
  *    handled for the whole screen (dispatchKeyEvent), not per field: "Press Enter after typing" on the password
@@ -61,10 +61,10 @@ public class MainActivity extends Activity {
     // The email matches the template's Set Values default, so only the password and the key need entering.
     static final String TEST_EMAIL = "qa@example.com";
     static final String TEST_PASSWORD = "canary-password";
-    /** Base32 setup key for the authenticator / remonode's 2FA Code (TOTP) node. SHA1, 6 digits, 30 s. */
-    static final String TOTP_SECRET = "REMONODECANARY23";
+    /** Base32 setup key for the authenticator / Remopipe's 2FA Code (TOTP) node. SHA1, 6 digits, 30 s. */
+    static final String TOTP_SECRET = "REMOPIPECANARY23";
 
-    // For remonode's "Rotate & resume" template, whose two screenshots are only evidence if the screen says
+    // For Remopipe's "Rotate & resume" template, whose two screenshots are only evidence if the screen says
     // what happened between them. Process-wide, so they outlive the activity: a rotation destroys and rebuilds
     // it (this app does not handle configChanges, like most apps), and that rebuild is exactly what the test
     // is about — "created 2×" after a rotation IS the rebuild, "resumed 2×" after Background App IS the resume.
@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
     private final List<View> snapPoints = new ArrayList<>();
 
     /**
-     * A fling lands exactly on the next tour panel (or back on the one before, or the top). remonode's Scroll
+     * A fling lands exactly on the next tour panel (or back on the one before, or the top). Remopipe's Scroll
      * swipes in 300 ms by default, which is a fling: in a plain ScrollView the page then coasts a distance that
      * depends on the device's fling physics, and the "same" walkthrough captures different crops on different
      * phones. Snapping makes each Scroll one step of the tour. A slow drag still scrolls freely.
@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
         root.addView(card, cardLp);
 
         // For the "Crash & ANR watch" template, whose log check can only take its crash branch if something
-        // crashes: one Tap on either of these (id=io.remonode.notifytest:id/crash or …/freeze) and the log it
+        // crashes: one Tap on either of these (id=io.remopipe.notifytest:id/crash or …/freeze) and the log it
         // is recording has a FATAL EXCEPTION or an ANR in it. Outside the card so they are there at every step.
         TextView stability = line("Stability test", 14, "#6E6E80");
         stability.setPadding(0, dp(28), 0, 0);

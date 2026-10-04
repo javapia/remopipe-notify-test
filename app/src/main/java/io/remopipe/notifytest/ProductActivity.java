@@ -1,4 +1,4 @@
-package io.remonode.notifytest;
+package io.remopipe.notifytest;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -11,11 +11,11 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Where a deep link lands, for remonode's "Deep link check" template. That template opens
+ * Where a deep link lands, for Remopipe's "Deep link check" template. That template opens
  * https://example.com/product/123 and asserts it arrived on the right screen instead of a web page, so this
- * screen answers to exactly that link, and to remonode-canary://product/123 as well:
+ * screen answers to exactly that link, and to remopipe-canary://product/123 as well:
  *
- *  - With Open URL's Target app set to io.remonode.notifytest, the https link is forced into this app and
+ *  - With Open URL's Target app set to io.remopipe.notifytest, the https link is forced into this app and
  *    lands here — the passing run.
  *  - With Target app empty, nothing has VERIFIED example.com (there is no autoVerify, and there could not be:
  *    we don't own the domain), so Android hands it to the browser — which is precisely the failure the
@@ -47,10 +47,10 @@ public class ProductActivity extends Activity {
         setContentView(root);
     }
 
-    /** The segment after "product": https://host/product/123 and remonode-canary://product/123 both give 123. */
+    /** The segment after "product": https://host/product/123 and remopipe-canary://product/123 both give 123. */
     static String productId(Uri link) {
         if (link == null) return "?";
-        // For the custom scheme "product" is the HOST (remonode-canary://product/123), so the id is the first
+        // For the custom scheme "product" is the HOST (remopipe-canary://product/123), so the id is the first
         // path segment; for https it is a path segment itself, and the id follows it.
         if ("product".equals(link.getHost())) {
             List<String> seg = link.getPathSegments();

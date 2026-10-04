@@ -1,4 +1,4 @@
-package io.remonode.notifytest;
+package io.remopipe.notifytest;
 
 import java.nio.ByteBuffer;
 import java.security.GeneralSecurityException;
@@ -8,7 +8,7 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * RFC 6238 TOTP — the same code an authenticator app shows, and the same code remonode's "2FA Code (TOTP)"
+ * RFC 6238 TOTP — the same code an authenticator app shows, and the same code Remopipe's "2FA Code (TOTP)"
  * node generates: HMAC-SHA1, 6 digits, 30-second steps. Those are the node's defaults, so a workflow pasted
  * with just the setup key produces codes this app accepts.
  */
@@ -16,7 +16,7 @@ final class Totp {
 
     private static final int DIGITS = 6;
     private static final long PERIOD_SECONDS = 30;
-    // One step either side, as real services allow: the code is generated on remonode's worker and typed a
+    // One step either side, as real services allow: the code is generated on Remopipe's worker and typed a
     // second or two later on a phone whose clock is its own, and a code that expires between the two is the
     // run failing on timing rather than on login.
     private static final int WINDOW = 1;

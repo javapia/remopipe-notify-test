@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Views are built in code, and a view built in code has no resource-id in the UI dump unless its id is a
-  declared resource. These are what a remonode workflow selects on: id=io.remonode.notifytest:id/email etc.
+  declared resource. These are what a Remopipe workflow selects on: id=io.remopipe.notifytest:id/email etc.
 -->
 <resources>
     <item name="email" type="id" />

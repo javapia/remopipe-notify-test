@@ -3,7 +3,7 @@
 
     <application
         android:allowBackup="false"
-        android:label="Remonode Canary">
+        android:label="Remopipe Canary">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -28,10 +28,10 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="remonode-canary" android:host="product" />
+                <data android:scheme="remopipe-canary" android:host="product" />
             </intent-filter>
         </activity>
-        <!-- A deliberately broken screen for the AI screen check template: remonode-canary://broken -->
+        <!-- A deliberately broken screen for the AI screen check template: remopipe-canary://broken -->
         <activity
             android:name=".BrokenActivity"
             android:exported="true">
@@ -39,7 +39,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="remonode-canary" android:host="broken" />
+                <data android:scheme="remopipe-canary" android:host="broken" />
             </intent-filter>
         </activity>
         <!-- The "Freeze (ANR)" button. Not exported: only the app's own button sends to it. -->

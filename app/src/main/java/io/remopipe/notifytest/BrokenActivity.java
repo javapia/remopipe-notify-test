@@ -1,4 +1,4 @@
-package io.remonode.notifytest;
+package io.remopipe.notifytest;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * A screen that is broken on purpose, for remonode's "AI screen check" template. Its prompt asks the model to
+ * A screen that is broken on purpose, for Remopipe's "AI screen check" template. Its prompt asks the model to
  * flag "error messages, empty states, missing content or anything that looks broken", and the canary's normal
  * screen has none of those — so the template could only ever be seen saying "looks fine". Opened with
- * remonode-canary://broken, this screen has one of each, the way they actually show up in a real app:
+ * remopipe-canary://broken, this screen has one of each, the way they actually show up in a real app:
  *
  *  - an error banner with a status code,
  *  - a list whose header says it has items and whose body says it has none,
