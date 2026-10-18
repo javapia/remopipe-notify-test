@@ -107,7 +107,8 @@ would coast a device-dependent distance; snapping makes every run capture the sa
 | 2 (after the first Scroll) | TOUR 1 OF 3 — Install once |
 | 3 (after the second Scroll) | TOUR 2 OF 3 — Test unattended |
 
-Add a third Scroll + Screenshot to reach TOUR 3. A slow drag still scrolls freely. The tour is below
+Add a third Scroll + Screenshot to reach TOUR 3. Each fling moves exactly one panel, counted from where the
+swipe began, so it works the same on a tall phone. A slow drag still scrolls freely. The tour is below
 everything else, so the launch screen the other templates wait for and tap on is unchanged. Replayed on a
 Pixel 9 emulator (API 35) with the Scroll node's exact default gesture.
 

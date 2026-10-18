@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -89,9 +90,15 @@ public class MainActivity extends Activity {
      * swipes in 300 ms by default, which is a fling: in a plain ScrollView the page then coasts a distance that
      * depends on the device's fling physics, and the "same" walkthrough captures different crops on different
      * phones. Snapping makes each Scroll one step of the tour. A slow drag still scrolls freely.
+     *
+     * The step is counted from where the gesture STARTED, not where the finger lifted. The drag itself moves the
+     * page before the fling begins — 70% of the screen for the default Scroll — and on a tall phone (S25 Ultra,
+     * ~1100dp) that is past the first panel's top, so "the next panel after the lift" skipped panel 1 and every
+     * capture after it was one panel ahead.
      */
     private static final class SnapScrollView extends ScrollView {
         private final List<View> points;
+        private int downY;
 
         SnapScrollView(Context context, List<View> points) {
             super(context);
@@ -99,8 +106,14 @@ public class MainActivity extends Activity {
         }
 
         @Override
+        public boolean dispatchTouchEvent(MotionEvent ev) {
+            if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) downY = getScrollY();
+            return super.dispatchTouchEvent(ev);
+        }
+
+        @Override
         public void fling(int velocityY) {
-            int y = getScrollY();
+            int y = downY;
             int target = velocityY > 0 ? Integer.MAX_VALUE : 0;
             for (View p : points) {
                 int top = p.getTop();
